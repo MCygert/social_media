@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.ts",
 	"scripts": {
-		"server": "npx ts-node index.ts",
+		"server": "npx nodemon ./index.ts localhost 8080",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "",
