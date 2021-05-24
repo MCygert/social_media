@@ -1,33 +1,26 @@
 import express from 'express';
+import  { findUser }  from './findUser';
 const app = express();
 const port = 8080;
-interface User {
-	id: number;
-	firstName: String;
-	lastName: String;
-	email: String;
-	gender: String;
-	password: String;
-	friends: Array<Name>;
-}
-interface Name {
-	firstName: String;
-	lastName: String;
-}
+
 interface loginUser {
 	email: String;
 	password: String;
 }
-const users: Array<User> = require('./MOCK_DATA.json');
 app.use(express.json());
 
 app.get('/', (req, res) => {
-	res.send(users);
-});
+ res.send("I am working")});
+
 app.post('/', (req, res) => {
 	const requestData: loginUser = req.body;
-	res.send(requestData);
+	const foundUser = findUser(requestData.email, requestData.password)
+	if(foundUser === undefined) {
+		res.status(404).send("Didn't found that user")
+	}
+	res.status(200).send(foundUser);
 });
 app.listen(port, () => {
 	console.log(`Listening on port http://localhost:${port}`);
 });
+ 
