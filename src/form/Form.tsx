@@ -3,9 +3,6 @@ import styled from 'styled-components';
 const axios = require('axios').default;
 
 export const Form = () => {
-	const headers = {
-		'Access-Control-Allow-Origin': 'http://localhost:8080'
-	}
 	const Form = styled.form`
 		font-size: 21px;
 		height: 55px;
@@ -27,12 +24,11 @@ export const Form = () => {
 		e.preventDefault();
 		try{
 		const response = await axios.post('http://localhost:8080/', {
-			email: 'test',
-			pasword: 'test',
-		},{
-			headers: headers
-		});
-		console.log(response)
+			email: 'xshortell0@joomla.org',
+			password: 'qtiuEwsd8zA',
+		}
+		);
+		console.log(response.data)
 	}
 	catch (err) {
 		console.log(err)
