@@ -15,6 +15,8 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
 	const requestData: loginUser = req.body;
 	const foundUser = findUser(requestData.email, requestData.password)
+	console.log(req.body)
+	res.set('Access-Control-Allow-Origin', '*')
 	if(foundUser === undefined) {
 		res.status(404).send("Didn't found that user")
 	}

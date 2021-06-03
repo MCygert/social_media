@@ -22,11 +22,17 @@ export const Form = () => {
 	`;
 	const getUser = async (e: SyntheticEvent) => {
 		e.preventDefault();
+		try{
 		const response = await axios.post('http://localhost:8080/', {
-			email: 'test',
-			pasword: 'test',
-		});
-		console.log('☺️' + response);
+			email: 'xshortell0@joomla.org',
+			password: 'qtiuEwsd8zA',
+		}
+		);
+		console.log(response.data)
+	}
+	catch (err) {
+		console.log(err)
+	}
 	};
 	return (
 		<Form>
