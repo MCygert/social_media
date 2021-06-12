@@ -1,5 +1,6 @@
 import express from 'express';
 import  { findUser }  from './findUser';
+import cors from 'cors'
 const app = express();
 const port = 8080;
 
@@ -7,6 +8,8 @@ interface loginUser {
 	email: String;
 	password: String;
 }
+app.use(cors())
+app.options('*', cors())
 app.use(express.json());
 
 app.get('/', (req, res) => {
