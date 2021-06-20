@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 const axios = require('axios').default;
 
 type FormProps = {
@@ -8,6 +8,7 @@ type FormProps = {
 };
 
 export const Form = ({ getAuth }: FormProps) => {
+	let history = useHistory();
 	const Form = styled.form`
 		font-size: 21px;
 		height: 55px;
@@ -17,7 +18,7 @@ export const Form = ({ getAuth }: FormProps) => {
 		height: 100%;
 		width: auto;
 	`;
-	const LoginButton = styled.input`
+	const LoginButton = styled.button`
 		border-radius: 25px;
 		justify-self: center;
 	`;
@@ -32,8 +33,9 @@ export const Form = ({ getAuth }: FormProps) => {
 				email: 'xshortell0@joomla.org',
 				password: 'qtiuEwsd8zA',
 			});
-			if(response.status===200){
-				getAuth(true)
+			if (response.status === 200) {
+				getAuth(response);
+				history.push('dashboard');
 			}
 		} catch (err) {
 			console.log(err);
@@ -45,11 +47,12 @@ export const Form = ({ getAuth }: FormProps) => {
 			<input type='password' value={'password'}></input>
 			<ButtonsSection>
 				<LoginButton type='button' value='hi'></LoginButton>
+				<div>
 					<LoginButton
 						type='button'
 						placeholder='login'
-						onClick={getUser}>
-						</LoginButton>
+						onClick={getUser}></LoginButton>
+				</div>
 			</ButtonsSection>
 		</Form>
 	);

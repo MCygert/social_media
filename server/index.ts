@@ -24,7 +24,7 @@ app.post('/', (req, res) => {
 	if (foundUser === undefined) {
 		res.status(404).send("Didn't found that user");
 	}
-	res.status(200).send(true);
+	res.status(200).send(foundUser);
 });
 app.listen(port, () => {
 	console.log(`Listening on port http://localhost:${port}`);

@@ -2,22 +2,27 @@ import { Form } from './form/Form';
 import { Navbar } from './navbar/Navbar';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { ProtectedRoute } from './components/ProtectedRoute';
-import  DashBoard  from './components/DashBoard';
+import history from 'history';
+import ProtectedRoute from './components/ProtectedRoute';
+import DashBoard from './components/DashBoard';
 function App() {
-	const [isAuth, setIsAuth] = useState(false);
-	const setAuthorisation = (auth: boolean) => {
-		console.log(auth);
-		setIsAuth(auth);
+	const [user, setUser] = useState(null);
+
+	const handleLogin = (loggedUser: any) => {
+		console.log(loggedUser.data);
+		setUser(loggedUser.data);
 	};
 	return (
 		<div className='App'>
 			<Navbar></Navbar>
 			<Router>
 				<Route path='/' exact>
-					<Form getAuth={setAuthorisation}></Form>
+					<Form getAuth={handleLogin}></Form>
 				</Route>
-				<ProtectedRoute rest="/profile" setAuth={isAuth} component={DashBoard}></ProtectedRoute>
+				<ProtectedRoute
+					path='/dashboard'
+					user={user}
+					Component={DashBoard}></ProtectedRoute>
 			</Router>
 		</div>
 	);

@@ -1,18 +1,34 @@
-import React, {FunctionComponent} from 'react'
-import {Route, Redirect} from 'react-router-dom'
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
 
 type ProtectedRouteProps = {
-    setAuth: boolean,
-    component: React.ReactNode,
-    rest: any
-    
-}
+	Component: any;
+	user: any;
+	path: string;
+};
 
-export const ProtectedRoute: FunctionComponent<ProtectedRouteProps> = ({setAuth , component , ...rest}: ProtectedRouteProps) => {
-    return (
-        <Route {...rest} render={(props) => {
-            if (setAuth){
-                return component } else {
-                return <Redirect to={{pathname: "/", state: {from: props.location}}} />}}}></Route>
-    )
-}
+const ProtectedRoute = ({ Component, user, path }: ProtectedRouteProps) => {
+	return (
+		<Route
+			path={path}
+			render={(props) => {
+				if (user !== null) {
+					return <Component {...props} />;
+				} else {
+					return (
+						<Redirect
+							to={{
+								pathname: '/unauthorized',
+								state: {
+									from: props.location,
+								},
+							}}
+						/>
+					);
+				}
+			}}
+		/>
+	);
+};
+
+export default ProtectedRoute;
