@@ -2,15 +2,14 @@ import { Form } from './form/Form';
 import { Navbar } from './navbar/Navbar';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import history from 'history';
 import ProtectedRoute from './components/ProtectedRoute';
-import DashBoard from './components/DashBoard';
+import DashBoard, { User } from './components/DashBoard';
 function App() {
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<User>();
 
-	const handleLogin = (loggedUser: any) => {
-		console.log(loggedUser.data);
-		setUser(loggedUser.data);
+	const handleLogin = (loggedUser: User) => {
+		console.log(loggedUser);
+		setUser(loggedUser);
 	};
 	return (
 		<div className='App'>

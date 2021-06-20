@@ -1,13 +1,16 @@
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { User } from '../components/DashBoard';
 const axios = require('axios').default;
 
 type FormProps = {
-	getAuth: (a: boolean) => void;
+	getAuth: (a: User) => void;
 };
 
 export const Form = ({ getAuth }: FormProps) => {
+	const [email, setEmail] = useState('email')
+	const [password, setPassword] = useState('password')
 	let history = useHistory();
 	const Form = styled.form`
 		font-size: 21px;
@@ -34,7 +37,7 @@ export const Form = ({ getAuth }: FormProps) => {
 				password: 'qtiuEwsd8zA',
 			});
 			if (response.status === 200) {
-				getAuth(response);
+				getAuth({...response.data});
 				history.push('dashboard');
 			}
 		} catch (err) {
@@ -43,16 +46,15 @@ export const Form = ({ getAuth }: FormProps) => {
 	};
 	return (
 		<Form>
-			<input type='text' value={'email'}></input>
-			<input type='password' value={'password'}></input>
+			<input type='text' value={email} onChange={e => setEmail(e.target.value)}></input>
+			<input type='password' value={password} onChange={e => setPassword(e.target.value)}></input>
 			<ButtonsSection>
-				<LoginButton type='button' value='hi'></LoginButton>
-				<div>
+				<LoginButton type='button' value='hi'>Register</LoginButton>
 					<LoginButton
+						value='login'
 						type='button'
 						placeholder='login'
-						onClick={getUser}></LoginButton>
-				</div>
+						onClick={getUser}>Login</LoginButton>
 			</ButtonsSection>
 		</Form>
 	);
