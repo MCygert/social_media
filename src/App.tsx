@@ -2,11 +2,13 @@ import { Form } from './form/Form';
 import { Navbar } from './navbar/Navbar';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import  DashBoard  from './components/DashBoard';
 function App() {
 	const [isAuth, setIsAuth] = useState(false);
 	const setAuthorisation = (auth: boolean) => {
-		setIsAuth(auth);
 		console.log(auth);
+		setIsAuth(auth);
 	};
 	return (
 		<div className='App'>
@@ -15,6 +17,7 @@ function App() {
 				<Route path='/' exact>
 					<Form getAuth={setAuthorisation}></Form>
 				</Route>
+				<ProtectedRoute rest="/profile" setAuth={isAuth} component={DashBoard}></ProtectedRoute>
 			</Router>
 		</div>
 	);

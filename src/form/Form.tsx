@@ -32,8 +32,9 @@ export const Form = ({ getAuth }: FormProps) => {
 				email: 'xshortell0@joomla.org',
 				password: 'qtiuEwsd8zA',
 			});
-			getAuth(true);
-			console.log(response.data);
+			if(response.status===200){
+				getAuth(true)
+			}
 		} catch (err) {
 			console.log(err);
 		}
@@ -43,13 +44,12 @@ export const Form = ({ getAuth }: FormProps) => {
 			<input type='text' value={'email'}></input>
 			<input type='password' value={'password'}></input>
 			<ButtonsSection>
-				<LoginButton type='button' value={'register'}></LoginButton>
-				<Link to='/dashboards'>
+				<LoginButton type='button' value='hi'></LoginButton>
 					<LoginButton
 						type='button'
-						value={'login'}
-						onClick={getUser}></LoginButton>
-				</Link>
+						placeholder='login'
+						onClick={getUser}>
+						</LoginButton>
 			</ButtonsSection>
 		</Form>
 	);
