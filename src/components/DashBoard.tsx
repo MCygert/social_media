@@ -1,5 +1,8 @@
 import React from 'react'
-export interface User {
+import styled from 'styled-components'
+import FriendsList from './FriendsList'
+
+export type User =  {
 	id: number;
 	firstName: String;
 	lastName: String;
@@ -8,17 +11,21 @@ export interface User {
 	password: String;
 	friends: Array<Name>;
 }
-interface Name {
+export type Name = {
 	firstName: String;
 	lastName: String;
-}
+};
+const FriendListContainer = styled.div`
+ display: flex;
+ flex-direction: column-reverse;
+ justify-content: flex-end;
+`;
 const DashBoard = (user:User) => {
     console.log(user)
     return (
-        <div>
-            <h1>{user.firstName}</h1>
-        <h1>{"I AM PROTECTED"}</h1>         
-        </div>
+        <FriendListContainer>
+			{user.friends.map((name) => { return <FriendsList name={name}></FriendsList>})}
+			</FriendListContainer>
     )
 }
 export default DashBoard

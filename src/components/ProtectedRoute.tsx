@@ -13,7 +13,7 @@ const ProtectedRoute = ({ Component, user, path }: ProtectedRouteProps) => {
 			path={path}
 			render={(props) => {
 				if (user !== null) {
-					return <Component {...props} {...user} />;
+					return <Component {...user} />;
 				} else {
 					return (
 						<Redirect
