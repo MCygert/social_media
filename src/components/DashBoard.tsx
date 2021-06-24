@@ -18,7 +18,11 @@ export type Name = {
 const FriendListContainer = styled.div`
  display: flex;
  flex-direction: column-reverse;
- justify-content: flex-end;
+ align-items: flex-end;
+ border: 4px aliceblue;
+ border-style: groove;
+ padding-right: 4vh;
+
 `;
 const DashBoard = (user:User) => {
     console.log(user)
