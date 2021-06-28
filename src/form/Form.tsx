@@ -9,8 +9,8 @@ type FormProps = {
 };
 
 export const Form = ({ getAuth }: FormProps) => {
-	const [email, setEmail] = useState('email')
-	const [password, setPassword] = useState('password')
+	const [email, setEmail] = useState('email');
+	const [password, setPassword] = useState('password');
 	let history = useHistory();
 	const Form = styled.form`
 		font-size: 21px;
@@ -33,11 +33,11 @@ export const Form = ({ getAuth }: FormProps) => {
 		e.preventDefault();
 		try {
 			const response = await axios.post('http://localhost:8080/', {
-				email: 'xshortell0@joomla.org',
-				password: 'qtiuEwsd8zA',
+				email: 'test',
+				password: 'test',
 			});
 			if (response.status === 200) {
-				getAuth({...response.data});
+				getAuth({ ...response.data });
 				history.push('dashboard');
 			}
 		} catch (err) {
@@ -46,15 +46,25 @@ export const Form = ({ getAuth }: FormProps) => {
 	};
 	return (
 		<Form>
-			<input type='text' value={email} onChange={e => setEmail(e.target.value)}></input>
-			<input type='password' value={password} onChange={e => setPassword(e.target.value)}></input>
+			<input
+				type='text'
+				value={email}
+				onChange={(e) => setEmail(e.target.value)}></input>
+			<input
+				type='password'
+				value={password}
+				onChange={(e) => setPassword(e.target.value)}></input>
 			<ButtonsSection>
-				<LoginButton type='button' value='hi'>Register</LoginButton>
-					<LoginButton
-						value='login'
-						type='button'
-						placeholder='login'
-						onClick={getUser}>Login</LoginButton>
+				<LoginButton type='button' value='hi'>
+					Register
+				</LoginButton>
+				<LoginButton
+					value='login'
+					type='button'
+					placeholder='login'
+					onClick={getUser}>
+					Login
+				</LoginButton>
 			</ButtonsSection>
 		</Form>
 	);
