@@ -4,7 +4,11 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import DashBoard, { User } from './components/DashBoard';
+import styled from 'styled-components';
 function App() {
+	const MainComponent = styled.div`
+		background-color: grey;
+	`;
 	const [user, setUser] = useState<User>();
 
 	const handleLogin = (loggedUser: User) => {
@@ -12,7 +16,7 @@ function App() {
 		setUser(loggedUser);
 	};
 	return (
-		<div className='App'>
+		<MainComponent>
 			<Navbar></Navbar>
 			<Router>
 				<Route path='/' exact>
@@ -23,7 +27,7 @@ function App() {
 					user={user}
 					Component={DashBoard}></ProtectedRoute>
 			</Router>
-		</div>
+		</MainComponent>
 	);
 }
 
