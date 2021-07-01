@@ -18,12 +18,10 @@ export type Friend = {
 	lastName: String;
 };
 const FriendListContainer = styled.div`
-	display: flex;
-	flex-direction: column-reverse;
-	align-items: flex-end;
 	border: 4px aliceblue;
 	border-style: groove;
 	padding-right: 4vh;
+	grid-column: 3/4;
 `;
 const DashboardContainer = styled.div`
 	display: grid;
@@ -36,11 +34,33 @@ const Posts = styled.div`
 const Options = styled.div`
 	grid-column: 1/2;
 `;
+const OptionList = styled.ul`
+	list-style-type: none;
+`;
+const Option = styled.li`
+	margin-right: 1rem;
+	margin-bottom: 4vh;
+	text-align: center;
+	display: block;
+	background-color: #000000;
+	color: azure;
+	width: 130px;
+	height: 100px;
+	line-height: 60px;
+	text-decoration: none;
+`;
 const DashBoard = (user: User) => {
 	console.log(user);
 	return (
 		<DashboardContainer>
-			<Options> options</Options>
+			<Options>
+				<OptionList>
+				<Option><a>MarketPlace</a></Option>
+				<Option><a>Settings</a></Option>
+				<Option><a>Help</a></Option>
+				<Option><a>Option</a></Option>
+				</OptionList>
+				</Options>	
 			<Posts>
 				{user.friends.map((friend) => {
 					return (
